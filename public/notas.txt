@@ -1,0 +1,8 @@
+provincias->crud(editar,egregar, eliminar,listar,busqueda), 
+usuarios->crud(), 
+
+administrador va a realizar busquedas, crud de los usuarios,reporte de las provincias, horario de 
+informacion de las provincias ->crud,
+
+usuarios=>administrador,cliente
+el cliente=> informe 
