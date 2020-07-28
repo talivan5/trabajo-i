@@ -51,7 +51,7 @@
                   <a class="nav-link" href="#" data-toggle="modal" data-target="#login">Iniciar</a>
                   @if (Route::has('register'))
                   {{-- <a class="nav-link" href="{{ route('register') }}" data-toggle="modal" data-target="#registrar">Registrar</a> --}}
-                  {{-- <a class="nav-link" href="#" data-toggle="modal" data-target="#registrar">Registrar</a> --}}
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#registrar">Registrar</a> 
                   @endif
               @endauth
             @endif
