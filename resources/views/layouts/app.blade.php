@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome/css/all.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href=" {{ asset('css/geosearch.css') }}">
 </head>
 <body>
     <div id="app">

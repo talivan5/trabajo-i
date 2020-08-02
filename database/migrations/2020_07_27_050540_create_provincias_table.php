@@ -16,9 +16,10 @@ class CreateProvinciasTable extends Migration
         Schema::create('provincias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->string('direccion');
-            $table->string('tipo_movilidad');
-            $table->point('ubicacion');
+            $table->string('descripcion');
+            $table->enum('movilidad', ['flota', 'buses','surubi', 'micro', 'mini']);
+            $table->decimal('latitud',10,8);
+            $table->decimal('longitud',10,8);
             $table->timestamps();
         });
     }

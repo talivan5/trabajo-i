@@ -14,7 +14,12 @@ class ProvinciaController extends Controller
      */
     public function index()
     {
-        //
+        return view('provincia.index');
+    }
+
+    public function nuevo()
+    {
+        return view('provincia.registrar');
     }
 
     /**
