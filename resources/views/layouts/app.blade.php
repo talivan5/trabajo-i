@@ -52,11 +52,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Usuarios</a>
+                            <a class="nav-link" href="usuarios">Usuarios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Provincias</a>
+                            <a class="nav-link" href="provincias">Provincias</a>
                         </li>
                     </ul>
 
