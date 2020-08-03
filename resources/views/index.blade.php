@@ -17,15 +17,15 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-              
+
               <li class="nav-item active">
                 <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
               </li>
-              
+
               <li class="nav-item">
                 <a class="nav-link" href="#">Misión</a>
               </li>
-                        
+
               <li class="nav-item">
                 <a class="nav-link" href="#">Visión</a>
               </li>
@@ -35,11 +35,11 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Usuarios</a>
+                <a class="nav-link" href="usuarios">Usuarios</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Provincias</a>
+                <a class="nav-link" href="provincias">Provincias</a>
               </li>
           </ul>
           <div class="position-ref full-height navbar-nav">
@@ -51,7 +51,7 @@
                   <a class="nav-link" href="#" data-toggle="modal" data-target="#login">Iniciar</a>
                   @if (Route::has('register'))
                   {{-- <a class="nav-link" href="{{ route('register') }}" data-toggle="modal" data-target="#registrar">Registrar</a> --}}
-                  <a class="nav-link" href="#" data-toggle="modal" data-target="#registrar">Registrar</a> 
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#registrar">Registrar</a>
                   @endif
               @endauth
             @endif
