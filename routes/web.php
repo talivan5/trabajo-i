@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/usuarios', 'UsuarioController@index')->name('usuario');
 Route::get('/registrar', 'ProvinciaController@nuevo')->name('registrar');
+Route::get('/editar', 'ProvinciaController@editar')->name('editar');
 Route::get('/provincias', 'ProvinciaController@index')->name('provincia');

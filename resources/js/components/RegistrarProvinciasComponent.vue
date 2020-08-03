@@ -60,37 +60,40 @@
         </div>
         <div class="col col md-6">
             <br><br><br>
-            <form>
+            <form @submit.prevent="store()">
                  <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputAddress">Nombre de Provincia</label>
-                        <input type="text" v-model="this.nombre" class="form-control" placeholder="nombre de la provincia">
+                        <input type="text" v-model="provincia.nombre" class="form-control" placeholder="nombre de la provincia">
                     </div>
                     <div class="form-group col-md-6">
                             <label for="inputState">Movilidad</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
+                            <select v-model="provincia.movilidad" id="inputState" class="form-control">
+                                <option  selected>Choose...</option>
                             </select>
                         </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Latitud</label>
+                        <!--<input type="text" v-model="form.myLatitud" class="form-control" >-->
                         <input type="text" v-model="this.myLatitud" class="form-control" >
                     </div>
                     <div class="form-group col-md-6">
                          <label for="inputPassword4">Longitud</label>
-                        <input type="text" v-model="this.myLongitud" class="form-control" >
+                       <!-- <input type="text" v-model="form.myLongitud" class="form-control" >-->
+                       <input type="text" v-model="this.myLongitud" class="form-control" >
                     </div>
                 </div>
                
                 <div class="form-group">
                     <label for="inputAddress2">Descripción</label>
-                    <textarea class="form-control" v-model="this.descripcion" placeholder="descripción de la provincia"></textarea>
+                    <textarea class="form-control" v-model="provincia.descripcion" placeholder="descripción de la provincia"></textarea>
+                    
                 </div>
                 
-                <button type="submit" class="btn btn-success">Guardar</button>
-                <button type="submit" class="btn btn-warning">Cancelar</button>
+                <button type="submit" class="btn btn-warning">Guardar</button>
+                <a href="provincias" class="btn btn-secondary">Cancelar</a>
             </form>
         </div>
     </div>
@@ -147,10 +150,29 @@
                 //no muestra el boton eliminar
                 deleteButton: false,
                 //bounds: null
+                provincias:[],
+                provincia: {
+                    nombre: '',
+                    movilidad: '',
+                    myLatitud:'',
+                    myLongitud:'',
+                    descripcion: '',
+                }
             };
         },
 
         methods: {
+
+            store(){
+                axios.post('api/store')
+                .then((result) => {
+                    console.log("estoy aqui")
+                })
+                .catch((err) => {
+                    
+                });
+
+            },
             //adicionar para que funcione el evento de LMarker
             getLocation(location){
                 this.myLocation = location;

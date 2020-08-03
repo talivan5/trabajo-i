@@ -19,7 +19,7 @@ class CreateProvinciasTable extends Migration
             $table->string('descripcion');
             $table->enum('movilidad', ['flota', 'buses','surubi', 'micro', 'mini']);
             $table->decimal('latitud',10,8);
-            $table->decimal('longitud',10,8);
+            $table->decimal('longitud',11,8);
             $table->timestamps();
         });
     }

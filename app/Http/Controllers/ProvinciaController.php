@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Provincia;
 use Illuminate\Http\Request;
 
+
 class ProvinciaController extends Controller
 {
     /**
@@ -22,6 +23,10 @@ class ProvinciaController extends Controller
         return view('provincia.registrar');
     }
 
+    public function editar()
+    {
+        return view('provincia.editar');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +45,19 @@ class ProvinciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Provincia::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'movilidad' => $request->movilidad,
+            'latitud'=> $request->latitud,
+            'longitud'=> $request->longitud,
+            
+        ]);
+       
+        $provincias= $request->all();
+        echo($provincias);
+        
+        return view('provincias', 'data');
     }
 
     /**
@@ -87,4 +104,6 @@ class ProvinciaController extends Controller
     {
         //
     }
+
 }
+

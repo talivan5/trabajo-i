@@ -37,6 +37,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('usuario-component', require('./components/UsuarioComponent.vue').default);
 /**llama al componente ProvinciasComponent.vue */
 Vue.component('registrar-component', require('./components/RegistrarProvinciasComponent.vue').default);
+Vue.component('editar-component', require('./components/EditarProvinciasComponent.vue').default);
 Vue.component('provincias-component', require('./components/ListadoProvinciasComponent.vue').default);
 
 /**
@@ -49,6 +50,7 @@ import example from './components/ExampleComponent';
 import usuario from './components/UsuarioComponent';
 /**importa el componente ProvinciasComponent.vue */
 import registrar from './components/RegistrarProvinciasComponent';
+import editar from './components/EditarProvinciasComponent';
 import provincia from './components/ListadoProvinciasComponent';
 const app = new Vue({
     el: '#app',
@@ -56,6 +58,7 @@ const app = new Vue({
         example,
         usuario,
         registrar,
+        editar,
         provincia
     }
 });
