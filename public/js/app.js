@@ -54076,7 +54076,7 @@ var render = function() {
             _c("p", [
               _c("b", [_vm._v(" Mi Latitud : ")]),
               _vm._v(
-                " " + _vm._s(_vm.myLatitud) + "   \r\n                        "
+                " " + _vm._s(_vm.myLatitud) + "   \n                        "
               ),
               _c("b", [_vm._v(" Mi Longitud : ")]),
               _vm._v(" " + _vm._s(_vm.myLongitud) + " ")
@@ -54119,7 +54119,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\r\n                                    ADICIONAR\r\n                                "
+                            "\n                                    ADICIONAR\n                                "
                           )
                         ]
                       ),
@@ -54139,7 +54139,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\r\n                                    ELIMINAR\r\n                                "
+                            "\n                                    ELIMINAR\n                                "
                           )
                         ]
                       )
@@ -81037,8 +81037,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\trabajo-i\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\trabajo-i\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/Trabajos/trabajo-i/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/Trabajos/trabajo-i/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
