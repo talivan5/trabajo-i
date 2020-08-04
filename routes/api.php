@@ -20,7 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/usuarios', 'UsuarioController@index')->name('usuario');
+
 Route::get('/registrar', 'ProvinciaController@nuevo')->name('registrar');
 Route::get('/editar', 'ProvinciaController@editar')->name('editar');
 Route::get('/provincias', 'ProvinciaController@index')->name('provincia');
+
+
+//Route::get('/usuarios', 'UsuarioController@index')->name('usuario');
+Route::apiResource('usuarios', 'UsuarioController');

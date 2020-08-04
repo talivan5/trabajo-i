@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
 class UsuarioController extends Controller
 {
     /**
@@ -13,7 +13,14 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return view('usuarios');
+       $usuarios = User::orderBy('id', 'DESC')->get();
+
+       $data = [
+            'usuarios' => $usuarios,
+       ];
+
+       return response()->json($data, 200);
+       //echo('estoy aqui');
     }
 
     /**

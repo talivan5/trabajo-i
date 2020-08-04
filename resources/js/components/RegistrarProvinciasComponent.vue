@@ -72,7 +72,7 @@
                                 <option  selected>Choose...</option>
                             </select>
                         </div>
-                </div>
+                    </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Latitud</label>
@@ -166,7 +166,7 @@
             store(){
                 axios.post('api/store')
                 .then((result) => {
-                    console.log("estoy aqui")
+                   
                 })
                 .catch((err) => {
                     

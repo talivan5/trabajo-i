@@ -45,20 +45,10 @@ Vue.component('provincias-component', require('./components/ListadoProvinciasCom
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-import example from './components/ExampleComponent';
-/**importa el componente UsuariosComponent.vue */
-import usuario from './components/UsuarioComponent';
-/**importa el componente ProvinciasComponent.vue */
-import registrar from './components/RegistrarProvinciasComponent';
-import editar from './components/EditarProvinciasComponent';
-import provincia from './components/ListadoProvinciasComponent';
+
+
+import store from './store';
 const app = new Vue({
+    store, 
     el: '#app',
-    component:{
-        example,
-        usuario,
-        registrar,
-        editar,
-        provincia
-    }
 });

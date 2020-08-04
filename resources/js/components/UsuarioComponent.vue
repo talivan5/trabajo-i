@@ -23,29 +23,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>
-                        <!-- crear boton editar -->
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditarModal" data-whatever="@mdo">Editar</button>
-                        <!-- crear boton eliminar -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#EliminarModal" data-whatever="@mdo">Eliminar</button>
-                    </td>
+            
+                    <tr v-for="(usuario, $index) in usuarios" :key="usuario.id">
+                        <th scope="row">{{ $index+1 }}</th>
+                        <td>{{usuario.name}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>
+                            <!-- crear boton editar -->
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditarModal" data-whatever="@mdo">Editar</button>
+                            <!-- crear boton eliminar -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#EliminarModal" data-whatever="@mdo">Eliminar</button>
+                        </td>
                     </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
+                    
                 </tbody>
         </table>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -127,3 +117,40 @@
             </div>
     </div>
 </template>
+
+<script>
+
+export default {
+    data() {
+		return {
+            
+            usuario: {
+                id: '',
+                name: '',
+                email: '',
+            }
+        }
+    },
+
+    computed: {
+        usuarios() {
+        return this.$store.state.modulo_usuarios.usuarios;
+        }
+    },
+
+    methods: {
+        
+        listarUsuarios(){
+            //this.$store.dispatch('getOperadores');
+            this.$store.dispatch('getUsuarios');
+            console.log("estoy en el componente");
+        },
+       
+    },
+    mounted() {
+        this.listarUsuarios();
+         console.log("estoy en el mounted");
+
+    }
+}
+</script>
