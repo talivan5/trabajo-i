@@ -17,6 +17,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-
+Route::get('/home', 'HomeController@index')->name('home');
 Route::view('usuarios','usuarios');
+Route::view('provincias','provincias');
+Route::get('/mision', 'ProvinciaController@mision')->name('mision');
+Route::get('/vision', 'ProvinciaController@vision')->name('vision');
+Route::get('/historia', 'ProvinciaController@historia')->name('historia');

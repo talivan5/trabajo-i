@@ -20,13 +20,24 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome/css/all.css') }}" rel="stylesheet">
     <link rel="stylesheet" href=" {{ asset('css/geosearch.css') }}">
+    <style>
+        .footer {
+           left: 0;
+           bottom: 0;
+           width: 100%;
+           background-color: red;
+           color: black;
+           text-align: center;
+           font-size: 20px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-danger shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    TURISMO
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    PARADAS PROV
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -35,20 +46,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        
+
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ url('/home') }}">Inicio <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Misión</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Visión</a>
+                            <a class="nav-link" href="{{ url('mision') }}">Misión</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Historia</a>
+                            <a class="nav-link" href="{{ url('vision') }}">Visión</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('historia') }}">Historia</a>
                         </li>
 
                         <li class="nav-item">
@@ -65,11 +76,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
                                 </li>
                             @endif
                         @else
@@ -82,7 +93,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Cerrar Sesión') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -99,6 +110,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+    </div>
+    <div class="footer fixed-bottom">
+        <p>&copy;TRABAJO REALIZADO POR: IRIS ASUNCION SERRUDO CONDORI Y ELMER FLORES MIRANDA</p>
     </div>
 </body>
 </html>

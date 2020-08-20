@@ -21,34 +21,21 @@ Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-/**llama al componente ExampleComponent.vue */
 Vue.component('usuario-component', require('./components/UsuarioComponent.vue').default);
-/**llama al componente ProvinciasComponent.vue */
-Vue.component('registrar-component', require('./components/RegistrarProvinciasComponent.vue').default);
-Vue.component('editar-component', require('./components/EditarProvinciasComponent.vue').default);
-Vue.component('provincias-component', require('./components/ListadoProvinciasComponent.vue').default);
+Vue.component('provincia-component', require('./components/ProvinciasComponent.vue').default);
+Vue.component('detalle-component', require('./components/DetalleProvinciasComponent.vue').default);
+Vue.component('principal-component', require('./components/PrincipalComponent.vue').default);
+import { LMap, LTileLayer, LMarker, LPopup, LTooltip, LControlZoom } from 'vue2-leaflet';
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
+Vue.component('l-map', LMap);
+Vue.component('l-tile-layer', LTileLayer);
+Vue.component('l-marker', LMarker);
+Vue.component('l-popup', LPopup);
+Vue.component('l-tooltip', LTooltip);
+Vue.component('l-control-zoom', LControlZoom);
 
 import store from './store';
 const app = new Vue({
-    store, 
+    store,
     el: '#app',
 });

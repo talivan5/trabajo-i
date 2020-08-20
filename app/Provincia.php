@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provincia extends Model
 {
-    protected $fillable = ['nombre', 'descripcion', 'movilidad', 'latitud', 'longitud'];
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+        'movilidad',
+        'latitud',
+        'longitud',
+        'imagen'
+    ];
 }

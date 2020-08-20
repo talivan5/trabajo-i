@@ -1,174 +1,104 @@
 <template>
-
-    <div class="container-fluid">
-
-        <div class="row justify-content-center">
-            
-            <!-- muestra en la pantalla el zoom 
-            <p>Zoom : {{zoom}}</p>-->
-            <!-- muestra en la pantalla latitud y longitud
-            <br><p>Center : {{center}}</p>
-            markers :{{markers}}-->
-            <p><b> Mi Ubicación : </b> {{myLocation}} </p><br>
-            <p> <b> Mi Latitud : </b> {{myLatitud}} &nbsp;&nbsp;
-                <b> Mi Longitud : </b> {{myLongitud}} </p>
-            
-            <div class= "map">
-                <!-- de la pestaña components LMap @update:bounds="boundsUpdated" style="height: 80%; width: 100%"-->
-                <l-map
-                    style="height: 60%; width: 100%"
-                    :zoom="zoom"
-                    :center="center"
-                    @update:zoom="zoomUpdated"
-                    @update:center="centerUpdated"
-                    
-                    >
-                    <l-tile-layer :url="url"></l-tile-layer>
-                    <!-- instalar npm install --save vue2-leaflet-geosearch leaflet-geosearch en la terminal
-                    // sacar de vue2-leaflet-geosearch--usage -->
-                    <v-geosearch :options="geosearchOptions" ></v-geosearch>
-                    <!--sacar de vue2-leaflet-Components LControl -->
-                    <l-control>
-                        <!--agrega el boton adicionar-->
-                        <button @click= "addMarker" v-show="addButton">
-                            ADICIONAR
-                        </button>
-                        <!--agrega el boton eliminar-->
-                        <button @click= "deleteMarker" v-show="deleteButton">
-                            ELIMINAR
-                        </button>
-                    </l-control>
-                    <!--sacar de vue2-leaflet-Components LMarker -->
-                    <l-marker 
-                        v-for="(marker, index) in markers" :key="index"
-                        :lat-lng="marker"
-                    
-                        :draggable= "true"
-                    
-                        @update:lat-lng="getLocation"
-                    >
-                    </l-marker>
-                </l-map>
+    <div>
+        <div class="row">
+          <div class="col-sm-6" v-for="provincia in provincias" :key="provincia.id">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-8">
+                 <l-map
+                            v-if="showMap"
+                            :zoom="zoom"
+                            :center="center"
+                            :options="mapOptions"
+                            style="height: 100%"
+                        >
+                            <l-tile-layer :url="url" :attribution="attribution"/>
+                            <l-marker :lat-lng="latlng(provincia.latitud, provincia.longitud)">
+                                <l-popup>
+                                    <div @click="innerClick">
+                                        {{ provincia.nombre }}
+                                        <p v-show="true">
+                                        {{ provincia.descripcion }}
+                                        </p>
+                                    </div>
+                                </l-popup>
+                            </l-marker>
+                        </l-map>
+                </div>
+                <div class="col-md-4">
+                  <div class="card-body">
+                    <h5 class="card-title">{{provincia.nombre}}</h5>
+                    <p class="card-text">{{provincia.descripcion}}</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
             </div>
-                
+          </div>
         </div>
-        <!-- añadido para labels y cuadros de textos 
-        <div class= "row mt-3 justify-content-center">
-            <div class= "col-md-8">
-                <form>
-                    <div class= "form-row mt-3">
-                        <div class= "col-md-12">
-                            <label for="exampleInputEmail1"></label>
-                            <input type="text" v-model="form.provincia" class= "form-control">
-                        </div>
-                    </div>
-                    <div class= "form-row mt-3">
-                        <div class= "col-md-6">
-                            <label for="exampleInputPassword1"></label>
-                            <input type="text" v-model="form.latitud" class= "form-control" disabled>
-                        </div>
-                        <div class= "col-md-6">
-                            <label for="exampleInputPassword1"></label>
-                            <input type="text" v-model="form.longitud" class= "form-control" disabled>
-                        </div>
-                    </div>
-                    <button type= "submit" class= "btn btn-primary mt-3">boton</button>
-                </form>
-            </div>
-
-        </div>-->
-
     </div>
-
 </template>
-
 <script>
-    //aumentar LControl y LMarker
-    import {LMap, LTileLayer, LControl, LMarker} from 'vue2-leaflet';
-    // sacar de vue2-leaflet-geosearch--usage
-    import Vue2Leaflet from 'vue2-leaflet';
-    import { OpenStreetMapProvider } from 'leaflet-geosearch';
-    import VGeosearch from 'vue2-leaflet-geosearch';
-
-    export default 
-    {
-        components: {
-            LMap,
-            LTileLayer,
-            // sacar de vue2-leaflet-geosearch--usage
-            VGeosearch,
-            // sacar de vue2-leaflet-Components-LControl
-            LControl,
-            // sacar de vue2-leaflet-Components-LMarker
-            LMarker
-        },
-    
-        data (){
-            return {
-                url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                zoom: 14,
-                center: [ -17.9647, -67.106 ],
-                // sacar de vue2-leaflet-geosearch--usage
-                geosearchOptions: { // Important part Here
-                    provider: new OpenStreetMapProvider(),
-                    //sirve para colocar un buscador en la parte del medio
-                    style: 'bar',
-                    showMarker: false,
-                },
-                //sacar de vue2-leaflet-Components LMarker
-                //markerLatLng: [ -17.9647, -67.106 ],cambiar por 
-                markers: [],
-                myLocation:'',
-                myLatitud:'',
-                myLongitud:'',
-                //muestra solo el boton adicionar
-               addButton: true,
-                //no muestra el boton eliminar
-                //deleteButton: false,
-                //bounds: null
-            };
-        },
-
-        methods: {
-            //adicionar para que funcione el evento de LMarker
-            getLocation(location){
-                this.myLocation = location;
-                this.myLatitud = location.lat;
-                this.myLongitud = location.lng;
+import { latLng } from 'leaflet'
+import {LMap} from 'vue2-leaflet';
+export default {
+    data(){
+        return {
+            url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            attribution:
+            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            zoom: 13,
+            center: [ -17.9647, -67.106 ],
+            markers: [],
+            provincia:{
+                id: "",
+                nombre: "",
+                descripcion:"",
+                movilidad:"",
+                latitud:"",
+                longitud:"",
+                imagen:"",
             },
-            
-            //adicionar para que funcione el boton de i am usseles button
-            //y el markerlatlng
-            addMarker(){
-                this.markers.push(L.latLng(this.center));
-                this.addButton = false;
-                this.deleteButton = true;
+            lat: '',
+            lng: '',
+            showMap: true,
+            mapOptions: {
+                zoomSnap: 0.1
             },
-
-            deleteMarker(){
-                this.markers.splice(-1, 1);
-                this.deleteButton = false;
-                this.addButton = true;
-            },
-            zoomUpdated (zoom) {
-                this.zoom = zoom;
-            },
-
-            centerUpdated (center) {
-                this.center = center;
-            },
-            
-            /**boundsUpdated (bounds) {
-                this.bounds = bounds;
-            }*/
         }
+    },
+    components: {
+        LMap
+    },
+    computed:{
+        provincias(){
+            return this.$store.state.modulo_provincias.provincias;
+        }
+    },
+    methods:{
+        listaProvincias(){
+            this.$store.dispatch("getProvincias");
+        },
+         innerClick() {
+            alert("Click!");
+        },
+        getLocation(provincia){
+            this.myLocation = provincia;
+            this.provincia.latitud = provincia.lat;
+            this.provincia.longitud = provincia.lng;
+        },
+        latlng(lat, lng){
+            return latLng(lat, lng);
+        },
+        zoomUpdate(zoom) {
+            this.currentZoom = zoom;
+        },
+        centerUpdate(center) {
+            this.currentCenter = center;
+        },
+    },
+    mounted(){
+        this.listaProvincias();
     }
+}
 </script>
-
-<style scoped>
-    .map{
-        width: 100%;
-        height: 90vh;
-    }
-    
-</style>
