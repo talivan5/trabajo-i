@@ -112,7 +112,7 @@
         </main>
     </div>
     <div class="footer fixed-bottom">
-        <p>&copy;TRABAJO REALIZADO POR: Ivan Flores Flores</p>
+        <p>&copy;TRABAJO REALIZADO POR: IVAN FLORES FLORES</p>
     </div>
 </body>
 </html>
