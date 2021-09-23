@@ -112,7 +112,7 @@
         </main>
     </div>
     <div class="footer fixed-bottom">
-        <p>&copy;TRABAJO REALIZADO POR: IRIS ASUNCION SERRUDO CONDORI Y ELMER FLORES MIRANDA</p>
+        <p>&copy;TRABAJO REALIZADO POR: Ivan Flores Flores</p>
     </div>
 </body>
 </html>
