@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class ProvinciaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
        $provincias = Provincia::orderBy('id', 'DESC')->get();
@@ -24,36 +19,21 @@ class ProvinciaController extends Controller
     }
 
 
-    public function vision()
+    public function QuienesSomos()
     {
-        return view('vision');
+        return view('QuienesSomos');
     }
 
-    public function mision()
+    public function VisionMision()
     {
-        return view('mision');
+        return view('VisionMision');
     }
 
     public function historia()
     {
         return view('historia');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
       $provincia = new Provincia();
@@ -62,51 +42,22 @@ class ProvinciaController extends Controller
       $provincia->movilidad= $request->movilidad;
       $provincia->latitud= $request->latitud;
       $provincia->longitud= $request->longitud;
-    //   $provincia->imagen = $request->imagen;
-    //   if($provincia->imagen){
-    //      try {
-    //       $filePath = $this->UserImageUpload($provincia->imagen); //Passing $data->image as parameter to our created method
-    //       $provincia->imagen = $filePath;
-    //     } catch (Exception $e) {
-    //         //Write your error message here
-    //     }
-    //   }
+      $provincia->imagen = $request->imagen;
+      if($provincia->imagen){
+         try {
+            $destination_path='public/img/estaciones';
+            $imagen = $request->file('imagen');
+            $imagen_name = $imagen->getClientOriginalName();
+            $path = $request->file('imagen')->storeAs($destination_path, $imagen_name);
+            $provincia->imagen = $imagen_name;
+        } catch (Exception $e) {
+            //Write your error message here
+        }
+      }
       $provincia->save();
-      $data = [
-          'provincia_id' => $provincia->id,
-      ];
       return response()->json($data,200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Provincia  $provincia
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Provincia $provincia)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Provincia  $provincia
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Provincia $provincia)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Provincia  $provincia
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $provincia = Provincia::findOrfail($id);
@@ -115,6 +66,7 @@ class ProvinciaController extends Controller
         $provincia->movilidad = $request->movilidad;
         $provincia->latitud= $request->latitud;
         $provincia->longitud= $request->longitud;
+        $provincia->imagen= $request->imagen;
         $provincia->save();
 
         $data =[
@@ -125,12 +77,6 @@ class ProvinciaController extends Controller
         return response()->json($data,200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Provincia  $provincia
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $provincia = Provincia::findOrfail($id);

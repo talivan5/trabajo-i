@@ -4,15 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Provincia extends Model
+class Noticia extends Model
 {
     protected $fillable = [
-        'nombre',
+        'titulo',
+        'descripcion_corta',
         'descripcion',
-        'movilidad',
-        'latitud',
-        'longitud',
         'imagen'
     ];
-
 }

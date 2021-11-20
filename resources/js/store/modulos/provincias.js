@@ -16,28 +16,21 @@ export default {
                 console.error(error)
             });
         },
-        addProvincia({ dispatch }, payload ){
-            axios.post(`api/provincias`,{
-                nombre: payload.nombre,
-                descripcion: payload.descripcion,
-                movilidad: payload.movilidad,
-                latitud: payload.latitud,
-                longitud: payload.longitud,
-               // imagen: payload.imagen
-            }).then( response => {
+        addProvincia({ dispatch }, data){
+            axios.post('api/provincias',data).then( response => {
                 dispatch('getProvincias');
             }).catch(error => {
                 console.log(error)
             })
         },
-        editProvincia({ dispatch }, payload ){
-            axios.put(`api/provincias/${payload.id}`,{
-                nombre: payload.nombre,
-                descripcion: payload.descripcion,
-                movilidad: payload.movilidad,
-                latitud: payload.latitud,
-                longitud: payload.longitud,
-                //imagen:payload.imagen
+        editProvincia({ dispatch }, data ){
+            axios.put(`api/provincias/${data.id}`,{
+                nombre: data.nombre,
+                descripcion: data.descripcion,
+                movilidad: data.movilidad,
+                latitud: data.latitud,
+                longitud: data.longitud,
+                imagen: data.imagen
             }).then( response =>{
                 dispatch('getProvincias');
             }).catch(error =>{

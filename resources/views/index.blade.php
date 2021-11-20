@@ -7,23 +7,16 @@
     <title>Document</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <style>
-        .footer {
-           left: 0;
-           bottom: 0;
-           width: 100%;
-           background-color: red;
-           color: white;
-           text-align: center;
-        }
-        .footer p{
-            padding-top: 20px;
-        }
-    </style>
+    <link href="{{ asset('css/fontawesome/css/all.css') }}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger fixed-top">
-        <a class="navbar-brand" href="{{ url('/') }}">PARADAS PROV</a>
+    <div>
+      <img src="{{asset('img/banner_sup.jpg')}}" alt="holas" width="100%" />
+    </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url('/') }}">
+        <img src="{{asset('img/logo.png')}}" alt="Logo" width="90" height="40" />
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,17 +28,27 @@
                 <a class="nav-link" href="{{ url('/') }}">Inicio <span class="sr-only">(current)</span></a>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#mision">Misión</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#vision">Visión</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#historia">Historia</a>
-              </li>
+              <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle" 
+                    href="#" 
+                    id="navbarDropdown1" 
+                    role="button" 
+                    data-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false"
+                    >Nosotros</a
+                >
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <li class="nav-link text-dark">
+                        <a href="{{ url('vision-mision') }}">Misión y Visión</a>
+                    </li>
+                    <li class="nav-link text-dark">
+                        <a href="{{ url('quienes-somos') }}">Quienes Somos</a>
+                    </li>
+                    <li>
+                </ul>
+            </li>
           </ul>
           <div class="position-ref full-height navbar-nav">
             @if (Route::has('login'))
@@ -291,144 +294,63 @@
       </div>
       <!-- cars de imagenes y comentarios -->
       <br>
-      <div id="app" class="container">
+      <div id="app">
         <principal-component></principal-component><br>
-        <div class="row">
-            <div class="col col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('img/capachos1.jpg') }}" height="200px">
-                    <div class="card-body">
-                        <h5 class="card-title">CAPACHOS</h5>
-                        <p class="card-text" style="text-align: justify;">
-                            El balneario de Capachos un lugar turístico de aguas termales cuya administración depende del Gobierno Municipal de Oruro, genera diariamente entre 800 y 1.050 bolivianos por la afluencia de gente que diariamente visita el lugar.
-                        </p>
-                        <a href="https://boliviaesturismo.com/balneario-de-capachos-oruro-boliviaesturismo/" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('img/sabaya1.jpg') }}" height="200px">
-                    <div class="card-body">
-                        <h5 class="card-title">SABAYA</h5>
-                        <p class="card-text" style="text-align: justify;">
-                            Sabaya es una población y municipio rural de Bolivia, ubicado en la Provincia Sabaya del Departamento de Oruro.
-                            El municipio está conformado por comunidades rurales,
-                            durante la presidencia de Hernán Siles Suazo.
-                        </p>
-                        <a href="http://sabayabolivia.com/" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('img/huachacalla1.jpg') }}" height="200px">
-                    <div class="card-body">
-                        <h5 class="card-title">HUACHACALLA</h5>
-                        <p class="card-text" style="text-align: justify;">
-                            Fue designada como capital de la nueva provincia Sur Carangas, por Ley de 11 de noviembre de 1950 durante el gobierno de Mamerto Urriolagoitia,3 al dividirse la antigua provincia de Carangas. Posteriormente.
-                        </p>
-                        <a href="http://sabayabolivia.com/" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                    </div>
-                </div>
-            </div>
+        <detallenoticias-component></detallenoticias-component>
+      <!-- fixed-bottom  -->
+      <div class="footer bg-dark text-white text-center">
+        <div class="container pt-4">
+            <section class="mb-4">
+            <!-- Facebook -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-facebook-f"></i
+            ></a>
+
+            <!-- Twitter -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Google -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-google"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-instagram"></i
+            ></a>
+
+            <!-- Linkedin -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-linkedin"></i
+            ></a>
+            </section>
         </div>
-        <br>
-        <div class="row">
-            <div class="col col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('img/corque2.jpg') }}" height="200px">
-                    <div class="card-body">
-                        <h5 class="card-title">CORQUE</h5>
-                        <p class="card-text" style="text-align: justify;">
-                            El municipio está conformado por comunidades rurales, incluyendo: Corque, Jancocala, Copacabana, Caracota, Pajoco, Villa Tarucachi, Pomata Ayte, San Antonio de Nor Cala, Opoqueri, San José de Kala, Villa Esperanza, Andapata Lupe, Laca Laca y San Pedro de Huaylloco.
-                        </p>
-                        <a href="https://boliviaesturismo.com/balneario-de-capachos-oruro-boliviaesturismo/" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('img/pisiga1.jpg') }}" height="200px">
-                    <div class="card-body">
-                        <h5 class="card-title">PISIGA</h5>
-                        <p class="card-text" style="text-align: justify;">
-                            Pisiga Bolivar, o simplemente Pisiga, es un Distrito Municipal Urbano de Bolivia ubicado en la frontera con Chile, perteneciente al municipio de Sabaya en la Provincia de Sabaya del Departamento de Oruro.
-                            Fue creado por Ley el 28 de julio de 1996, sobre la frontera internacional.
-                        </p>
-                        <a href="http://sabayabolivia.com/" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('img/todossantos1.jpg') }}" height="200px">
-                    <div class="card-body">
-                        <h5 class="card-title">TODOS SANTOS</h5>
-                            <p class="card-text" style="text-align: justify;">
-                                Todos Santos es una localidad y municipio, segunda sección de la provincia Mejillones del Departamento de Oruro de Bolivia.
-                                Fue designada como segunda sección de provincia por Ley 18 de febrero de 1993 durante el gobierno de Jaime Paz Zamora.
-                            </p>
-                        <a href="http://sabayabolivia.com/" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <br>
-      <p>
-        <button class="btn btn-warning btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Ver más
-        </button>
-      </p>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-md-4">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{ asset('img/toledo1.jpg') }}" height="200px">
-                            <div class="card-body">
-                                <h5 class="card-title">TOLEDO</h5>
-                                <p class="card-text" style="text-align: justify;">
-                                    Toledo es una población y municipio de Bolivia, capital de la provincia de Saucarí en el departamento de Oruro. Fue designada como capital de provincia por Ley de 23 de noviembre de 1963 al crearse la provincia, durante el gobierno de Víctor Paz Estenssoro.
-                                </p>
-                                <a href="https://boliviaesturismo.com/balneario-de-capachos-oruro-boliviaesturismo/" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-md-4">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{ asset('img/challacollo1.jpg') }}" height="200px">
-                            <div class="card-body">
-                                <h5 class="card-title">CHALLACOLLO</h5>
-                                <p class="card-text" style="text-align: justify;">
-                                    La ubicación de Challacollo es la siguiente: Bolivia, Oruro, Oruro, Challacollo. ViaMichelin te ofrece la posibilidad de consultar los+ mapas detallados de Bolivia, Oruro, Oruro, Challacollo. A parte de la cartografía clásica, encontrarás allí los principales puntos de interés de la ciudad.
-                                </p>
-                                <a href="https://mapasamerica.dices.net/bolivia/mapa.php?nombre=Challacollo&id=29411" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-md-4">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{ asset('img/choro1.jpg') }}" height="200px">
-                            <div class="card-body">
-                                <h5 class="card-title">CHORO</h5>
-                                <p class="card-text" style="text-align: justify;">
-                                    El Choro es una población y municipio rural de Bolivia, ubicado en la Provincia de Cercado del Departamento de Oruro. Está situado al oeste del Río Desaguadero y al norte del Lago Poopó.
-                                    El municipio cuenta con una población de 8.725 habitantes (según el Censo INE).
-                                </p>
-                                <a href="https://www.comunicacion.gob.bo/?q=20170204/23146" target="_blank" class="btn btn-success btn-lg btn-block">Su pagina</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <br><br><br>
-      <div class="footer fixed-bottom">
+        <div class="p-3">
         <p>&copy;TRABAJO REALIZADO POR: IVAN FLORES FLORES</p>
-      </div>
+        </div>
+    </div>
 </body>
 </html>
+ 

@@ -14,7 +14,7 @@ trait ImgaeUpload
         $upload_path = 'image/';    //Creating Sub directory in Public folder to put image
         $image_url = $upload_path.$image_full_name;
         $success = $query->move($upload_path,$image_full_name);
-
+ 
         return $image_url; // Just return image
     }
 }

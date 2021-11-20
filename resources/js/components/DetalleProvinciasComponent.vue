@@ -2,7 +2,7 @@
     <div>
         <div class="row">
           <div class="col-sm-6" v-for="provincia in provincias" :key="provincia.id">
-            <div class="card mb-3" style="max-width: 540px;">
+            <div class="card" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="col-md-8">
                  <l-map
@@ -26,10 +26,10 @@
                         </l-map>
                 </div>
                 <div class="col-md-4">
-                  <div class="card-body">
-                    <h5 class="card-title">{{provincia.nombre}}</h5>
+                  <div class="card-body">                    
+                    <h6 class="card-title" style="text-transform: uppercase;">{{provincia.nombre}}</h6>
+                    <img :src="'storage/img/estaciones/'+provincia.imagen" alt="estos es" width="120" height="120">
                     <p class="card-text">{{provincia.descripcion}}</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                   </div>
                 </div>
               </div>

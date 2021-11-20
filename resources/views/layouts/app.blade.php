@@ -20,24 +20,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome/css/all.css') }}" rel="stylesheet">
     <link rel="stylesheet" href=" {{ asset('css/geosearch.css') }}">
-    <style>
-        .footer {
-           left: 0;
-           bottom: 0;
-           width: 100%;
-           background-color: red;
-           color: black;
-           text-align: center;
-           font-size: 20px;
-        }
-    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-danger shadow-sm">
+    
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    PARADAS PROV
+                <img src="{{asset('img/logo.png')}}" alt="Logo" width="90" height="40" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -46,18 +36,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ url('/home') }}">Inicio <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('mision') }}">Misión</a>
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle" 
+                                href="#" 
+                                id="navbarDropdown1" 
+                                role="button" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true" 
+                                aria-expanded="false"
+                                >Nosotros</a
+                            >
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                <li class="nav-link text-dark">
+                                    <a href="{{ url('vision-mision') }}">Misión y Visión</a>
+                                </li>
+                                <li class="nav-link text-dark">
+                                    <a href="{{ url('quienes-somos') }}">Quienes Somos</a>
+                                </li>
+                            </ul>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('vision') }}">Visión</a>
-                        </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('historia') }}">Historia</a>
                         </li>
@@ -68,6 +69,9 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="provincias">Provincias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="noticias">Noticias</a>
                         </li>
                     </ul>
 
@@ -111,8 +115,58 @@
             @yield('content')
         </main>
     </div>
-    <div class="footer fixed-bottom">
+    <div class="footer bg-dark text-white text-center">
+        <div class="container pt-4">
+            <section class="mb-4">
+            <!-- Facebook -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-facebook-f"></i
+            ></a>
+
+            <!-- Twitter -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Google -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-google"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-instagram"></i
+            ></a>
+
+            <!-- Linkedin -->
+            <a
+                class="btn btn-outline-light btn-floating text-white m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-linkedin"></i
+            ></a>
+            </section>
+        </div>
+        <div class="p-3">
         <p>&copy;TRABAJO REALIZADO POR: IVAN FLORES FLORES</p>
+        </div>
     </div>
 </body>
 </html>

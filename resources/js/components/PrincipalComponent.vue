@@ -12,10 +12,14 @@
                     >
                         <l-tile-layer :url="url" :attribution="attribution"/>
                         <l-marker v-for="provincia in provincias" :key="provincia.id" :lat-lng="latlng(provincia.latitud, provincia.longitud)">
-                            <l-popup>
-                                <div @click="innerClick">
-                                    {{ provincia.nombre }}
-                                </div>
+                            <l-popup>                                
+                                <div class="card" style="width: 18rem;" @click="innerClick">
+                                    <img class="card-img-top" :src="'storage/img/estaciones/'+provincia.imagen" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ provincia.nombre }}</h5>
+                                        <p class="card-text">{{ provincia.descripcion}}</p>
+                                    </div>
+                                </div>                                
                             </l-popup>
                         </l-marker>
                     </l-map>

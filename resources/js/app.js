@@ -10,6 +10,8 @@ window.Vue = require('vue');
 
 /**para las graficas sacar de Quick Start https://vue2-leaflet.netlify.app/quickstart/#nuxt */
 /**USAGE In your entry point: ie: app.js o main.js */
+//api clima
+//
 import 'leaflet/dist/leaflet.css';
 /**Marker Icons are missing */
 import { Icon } from 'leaflet';
@@ -25,8 +27,11 @@ Vue.component('usuario-component', require('./components/UsuarioComponent.vue').
 Vue.component('provincia-component', require('./components/ProvinciasComponent.vue').default);
 Vue.component('detalle-component', require('./components/DetalleProvinciasComponent.vue').default);
 Vue.component('principal-component', require('./components/PrincipalComponent.vue').default);
-import { LMap, LTileLayer, LMarker, LPopup, LTooltip, LControlZoom } from 'vue2-leaflet';
+Vue.component('noticias-component', require('./components/NoticiasComponent.vue').default);
+Vue.component('detallenoticias-component', require('./components/DetalleNoticiasComponent.vue').default);
+Vue.component('poblacion-component', require('./components/PoblacionComponent.vue').default);
 
+import { LMap, LTileLayer, LMarker, LPopup, LTooltip, LControlZoom } from 'vue2-leaflet';
 Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
 Vue.component('l-marker', LMarker);
@@ -34,6 +39,16 @@ Vue.component('l-popup', LPopup);
 Vue.component('l-tooltip', LTooltip);
 Vue.component('l-control-zoom', LControlZoom);
 
+//fecha
+import moment from 'moment';
+require('moment/locale/es');
+moment.locale('es');
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(value).fromNow()
+    }
+});
+//
 import store from './store';
 const app = new Vue({
     store,
