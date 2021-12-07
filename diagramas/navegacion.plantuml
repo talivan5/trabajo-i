@@ -1,0 +1,11 @@
+@startuml Navegacion
+[Mostrar el Mapa]-->[Iniciar Sesion]
+[Iniciar Sesion]-->[Lista Estaciones]
+[Lista Estaciones]-->[Registrar Estaciones]
+[Lista Estaciones]-->[Editar Estaciones]
+[Lista Estaciones]-->[Eliminar Estaciones]
+[Iniciar Sesion]-->[Listar Poblacion]
+[Listar Poblacion]-->[Editar Poblacion]
+[Listar Poblacion]-->[Eliminar Poblacion]
+[Listar Poblacion]-->[Registrar Poblacion]
+@enduml

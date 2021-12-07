@@ -13,12 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::post('store', 'api\ProvinciaController@store');
+//Route::post('estacions', 'api\EstacionController@store');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::apiResource('usuarios', 'UsuarioController');
-Route::apiResource('provincias', 'ProvinciaController');
-Route::apiResource('noticias', 'NoticiaController');
+Route::apiResource('estacions', 'EstacionController');
+Route::apiResource('poblacions', 'PoblacionController');
+Route::apiResource('sensors', 'SensorController');
+

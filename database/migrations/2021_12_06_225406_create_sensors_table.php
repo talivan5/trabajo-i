@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNoticiasTable extends Migration
+class CreateSensorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateNoticiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('noticias', function (Blueprint $table) {
+        Schema::create('sensors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo');
-            $table->string('descripcion_corta');
+            $table->string('nombre');
             $table->string('descripcion');
-            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateNoticiasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('noticias');
+        Schema::dropIfExists('sensors');
     }
 }

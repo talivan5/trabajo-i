@@ -24,12 +24,14 @@ Icon.Default.mergeOptions({
 });
 
 Vue.component('usuario-component', require('./components/UsuarioComponent.vue').default);
-Vue.component('provincia-component', require('./components/ProvinciasComponent.vue').default);
-Vue.component('detalle-component', require('./components/DetalleProvinciasComponent.vue').default);
+Vue.component('estacion-component', require('./components/EstacionComponent.vue').default);
+Vue.component('detalle-component', require('./components/DetalleEstacionComponent.vue').default);
 Vue.component('principal-component', require('./components/PrincipalComponent.vue').default);
 Vue.component('noticias-component', require('./components/NoticiasComponent.vue').default);
 Vue.component('detallenoticias-component', require('./components/DetalleNoticiasComponent.vue').default);
 Vue.component('poblacion-component', require('./components/PoblacionComponent.vue').default);
+Vue.component('escuela-component', require('./components/EscuelaComponent.vue').default);
+Vue.component('sensor-component', require('./components/SensorComponent.vue').default);
 
 import { LMap, LTileLayer, LMarker, LPopup, LTooltip, LControlZoom } from 'vue2-leaflet';
 Vue.component('l-map', LMap);
@@ -38,6 +40,13 @@ Vue.component('l-marker', LMarker);
 Vue.component('l-popup', LPopup);
 Vue.component('l-tooltip', LTooltip);
 Vue.component('l-control-zoom', LControlZoom);
+//paginacion
+import VuePaginate from 'vue-paginate'
+Vue.use(VuePaginate)
+//select
+import vSelect from 'vue-select';
+
+Vue.component('v-select', vSelect);
 
 //fecha
 import moment from 'moment';

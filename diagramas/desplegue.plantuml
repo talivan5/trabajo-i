@@ -1,0 +1,19 @@
+@startuml Navegacion
+artifact Estaciones{
+    folder Base
+}
+cloud Nube{
+
+}
+
+package Controllers{
+
+}
+frame Model{
+
+}
+
+storage Archivos{
+
+}
+@enduml

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Provincia;
+use App\Estacion;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $provincias = Provincia::orderBy('id', 'DESC')->get();
-        return view('home', compact('provincias'));
+        $estacions = Estacion::orderBy('id', 'DESC')->get();
+        return view('home', compact('estacions'));
     }
 }

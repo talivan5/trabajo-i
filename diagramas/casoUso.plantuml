@@ -1,0 +1,10 @@
+@startuml casoUso
+left to right direction
+:Usuarios: --> (Usuario)
+"Buscar Estacion GIS" as (Usuario)
+(Imprimir Mapa) .> (Usuario):<<extends>>
+(Visualizar Estacion).>(Imprimir Mapa):<<include>>
+(Mostrar Distacia \nde dos puntos).>(Visualizar Estacion):<<extends>>
+(Mostrar Buffer).>(Visualizar Estacion):<<extends>>
+(Mostrar Buffer Multiple).>(Visualizar Estacion):<<extends>>
+@enduml

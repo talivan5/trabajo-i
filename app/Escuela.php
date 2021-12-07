@@ -4,15 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Provincia extends Model
+class Escuela extends Model
 {
     protected $fillable = [
         'nombre',
-        'descripcion',
-        'movilidad',
         'latitud',
         'longitud',
-        'imagen'
+        'poblacion_id'
     ];
 
+    public function poblacion(){
+        return $this->belongsTo('App\Poblacion', 'poblacion_id');
+    }
 }

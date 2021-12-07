@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="mx-3">
    <!-- alinea el tirulo al centro-->
          <!-- colocar para que salga la pantalla de mapa-->
-      <registrar-component></registrar-component>
-
-      
+      <estacion-component></estacion-component>
 </div>
 @endsection

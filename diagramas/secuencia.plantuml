@@ -1,0 +1,25 @@
+@startuml
+actor Usuario
+boundary Iniciar_Session
+control LoginController
+entity tabla_usuario
+Usuario -> Iniciar_Session: Ingresa correo electronico
+activate Iniciar_Session #FFBBBB
+Usuario -> Iniciar_Session: Ingresa contrasena
+Usuario -> Iniciar_Session: Presiona Botton "Ingresar"
+
+Iniciar_Session -> LoginController: Captura credenciales
+deactivate
+activate LoginController #FFBBBB
+LoginController -> tabla_usuario: consultando Credenciales
+deactivate
+activate tabla_usuario #FFBBBB
+tabla_usuario->tabla_usuario: Verificar
+tabla_usuario --> LoginController: Confirmar Credenciales
+deactivate
+activate LoginController #FFBBBB
+LoginController --> Usuario:Validar Credenciales y mostrar pagina principal
+deactivate
+activate Usuario #FFBBBB
+deactivate
+@enduml

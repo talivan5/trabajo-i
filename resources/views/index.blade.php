@@ -28,7 +28,7 @@
                 <a class="nav-link" href="{{ url('/') }}">Inicio <span class="sr-only">(current)</span></a>
               </li>
 
-              <li class="nav-item dropdown">
+              <!-- <li class="nav-item dropdown">
                 <a
                     class="nav-link dropdown-toggle" 
                     href="#" 
@@ -48,7 +48,7 @@
                     </li>
                     <li>
                 </ul>
-            </li>
+              </li> -->
           </ul>
           <div class="position-ref full-height navbar-nav">
             @if (Route::has('login'))
@@ -295,8 +295,7 @@
       <!-- cars de imagenes y comentarios -->
       <br>
       <div id="app">
-        <principal-component></principal-component><br>
-        <detallenoticias-component></detallenoticias-component>
+        <principal-component></principal-component>
       <!-- fixed-bottom  -->
       <div class="footer bg-dark text-white text-center">
         <div class="container pt-4">

@@ -1,0 +1,21 @@
+@startuml presentacion
+package "Controlador" {
+    HTTP - [Mapa Estacion]
+        [Lista Estaciones]-HTTP
+}
+node "modelos" {
+    [Modelo Estaciones]
+}
+cloud {
+    [Mapa Estaciones]
+}
+
+database "MySql" {
+    frame "estaciones" {
+        [Estaciones]
+    }
+}
+[Lista Estaciones] -->[Mapa Estaciones]
+[Mapa Estaciones] -->[Modelo Estaciones]
+[Modelo Estaciones] -->[Estaciones]
+@enduml

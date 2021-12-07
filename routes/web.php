@@ -19,8 +19,9 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('usuarios','usuarios');
-Route::view('provincias','provincias');
-Route::view('noticias','noticias');
-Route::get('/vision-mision', 'ProvinciaController@VisionMision');
-Route::get('/quienes-somos', 'ProvinciaController@QuienesSomos');
-Route::get('/historia', 'ProvinciaController@historia')->name('historia');
+Route::view('estacions','estacion');
+Route::view('poblacion','poblacion');
+Route::view('sensors','sensors');
+Route::get('/vision-mision', 'EstacionController@VisionMision');
+Route::get('/quienes-somos', 'EstacionController@QuienesSomos');
+Route::get('/historia', 'EstacionController@historia')->name('historia');

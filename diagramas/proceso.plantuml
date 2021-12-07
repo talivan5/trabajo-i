@@ -1,0 +1,9 @@
+@startuml proceso
+!include <archimate/Archimate>
+
+' Elements
+Application_Event(webpageBehaviour, "mapa")
+
+'Relationships
+
+@enduml
