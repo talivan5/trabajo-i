@@ -2631,6 +2631,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2665,13 +2682,12 @@ $("#nuevo").on("shows.bs.modal", function () {});
         datos: "",
         observaciones: "",
         estado: "",
-        imagen: "",
-        sensor_id: ""
+        imagen: ""
       },
       lat: "",
       lng: "",
       showMap: true,
-      title: "Registrar Estación",
+      title: "",
       esEdit: false,
       imagenMineatura: "",
       mapOptions: {
@@ -2690,9 +2706,6 @@ $("#nuevo").on("shows.bs.modal", function () {});
     estacions: function estacions() {
       return this.$store.state.modulo_estacions.estacions;
     },
-    sensors: function sensors() {
-      return this.$store.state.modulo_sensors.sensors;
-    },
     imagen: function imagen() {
       return this.imagenMineatura;
     }
@@ -2700,9 +2713,6 @@ $("#nuevo").on("shows.bs.modal", function () {});
   methods: {
     listaEstacions: function listaEstacions() {
       this.$store.dispatch("getEstacions");
-    },
-    listaSensors: function listaSensors() {
-      this.$store.dispatch("getSensors");
     },
     obtenerImagen: function obtenerImagen(e) {
       var file = e.target.files[0];
@@ -2738,11 +2748,11 @@ $("#nuevo").on("shows.bs.modal", function () {});
           datos: estacion.datos,
           observaciones: estacion.observaciones,
           estado: estacion.estado,
-          imagen: estacion.imagen,
-          sensor_id: estacion.sensor_id
+          imagen: estacion.imagen
         };
       } else {
         this.esEdit = true;
+        this.title = "Registrar un Tipo Sensor";
         this.estacion = {
           id: "",
           nombre_estacion: "",
@@ -2757,8 +2767,7 @@ $("#nuevo").on("shows.bs.modal", function () {});
           datos: "",
           observaciones: "",
           estado: "",
-          imagen: "",
-          sensor_id: ""
+          imagen: ""
         };
       }
 
@@ -2783,25 +2792,7 @@ $("#nuevo").on("shows.bs.modal", function () {});
       formData.append("observaciones", estacion.observaciones);
       formData.append("estado", estacion.estado);
       formData.append("imagen", estacion.imagen);
-      formData.append("sensor_id", estacion.sensor_id);
       this.$store.dispatch("addEstacion", formData);
-      this.estacion = {
-        id: "",
-        nombre_estacion: "",
-        provincia_localidad: "",
-        municipio: "",
-        fecha_inicio: "",
-        fecha_fin: "",
-        latitud: "",
-        longitud: "",
-        altura: "",
-        tipo_estacion: "",
-        datos: "",
-        observaciones: "",
-        estado: "",
-        imagen: "",
-        sensor_id: ""
-      };
       $("#nuevo").modal("hide");
     },
     editarEstacion: function editarEstacion(estacion) {
@@ -2819,11 +2810,10 @@ $("#nuevo").on("shows.bs.modal", function () {});
         datos: estacion.datos,
         observaciones: estacion.observaciones,
         estado: estacion.estado,
-        imagen: estacion.imagen,
-        sensor_id: estacion.sensor_id
+        imagen: estacion.imagen
       };
-      this.$store.dispatch("editEstacion", payload);
       $("#nuevo").modal("hide");
+      this.$store.dispatch("editEstacion", payload);
     },
     eliminarEstacion: function eliminarEstacion(id) {
       this.$store.dispatch("deleteEstacion", id);
@@ -2856,7 +2846,6 @@ $("#nuevo").on("shows.bs.modal", function () {});
   },
   mounted: function mounted() {
     this.listaEstacions();
-    this.listaSensors();
   }
 });
 
@@ -3753,14 +3742,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       sensor: {
-        id: '',
-        nombre: '',
-        descripcion: ''
+        id: "",
+        nombre: "",
+        descripcion: "",
+        estacion_id: ""
       },
+      estacion: [],
       title: "",
       esEdit: false
     };
@@ -3768,11 +3823,17 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     sensors: function sensors() {
       return this.$store.state.modulo_sensors.sensors;
+    },
+    estacions: function estacions() {
+      return this.$store.state.modulo_estacions.estacions;
     }
   },
   methods: {
     listarSensors: function listarSensors() {
-      this.$store.dispatch('getSensors');
+      this.$store.dispatch("getSensors");
+    },
+    listarEstacions: function listarEstacions() {
+      this.$store.dispatch("getEstacions");
     },
     abrirModal: function abrirModal(tipo, sensor) {
       if (tipo != "nuevo") {
@@ -3781,7 +3842,8 @@ __webpack_require__.r(__webpack_exports__);
         this.sensor = {
           id: sensor.id,
           nombre: sensor.nombre,
-          descripcion: sensor.descripcion
+          descripcion: sensor.descripcion,
+          estacion_id: sensor.estacion_id
         };
       } else {
         this.esEdit = true;
@@ -3789,7 +3851,8 @@ __webpack_require__.r(__webpack_exports__);
         this.sensor = {
           id: "",
           sensor: "",
-          descripcion: ""
+          descripcion: "",
+          estacion_id: ""
         };
       }
 
@@ -3800,21 +3863,23 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     agregarSensor: function agregarSensor(sensor) {
-      this.$store.dispatch('addSensor', sensor);
+      this.$store.dispatch("addSensor", sensor);
       this.sensor = {
         nombre: sensor.nombre,
-        descripcion: sensor.descripcion
+        descripcion: sensor.descripcion,
+        estacion_id: sensor.estacion_id
       };
-      $('#nuevo').modal('hide');
+      $("#nuevo").modal("hide");
     },
     editarSensor: function editarSensor(sensor) {
       var payload = {
         id: sensor.id,
         nombre: sensor.nombre,
-        descripcion: sensor.descripcion
+        descripcion: sensor.descripcion,
+        estacion_id: sensor.estacion_id
       };
-      $('#nuevo').modal('hide');
-      this.$store.dispatch('editSensor', sensor);
+      $("#nuevo").modal("hide");
+      this.$store.dispatch("editSensor", sensor);
     },
     eliminarSensor: function eliminarSensor(id) {
       this.$store.dispatch("deleteSensor", id);
@@ -3822,6 +3887,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.listarSensors();
+    this.listarEstacions();
   }
 });
 
@@ -77739,6 +77805,24 @@ var render = function () {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(estacion.tipo_estacion))]),
               _vm._v(" "),
+              _c(
+                "td",
+                _vm._l(estacion.sensors, function (sensor) {
+                  return _c(
+                    "span",
+                    { key: sensor, staticClass: "badge badge-primary" },
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(sensor.nombre) +
+                          "\n            "
+                      ),
+                    ]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
               _c("td", [_vm._v(_vm._s(estacion.datos))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(estacion.observaciones))]),
@@ -78103,10 +78187,6 @@ var render = function () {
                     }),
                   ]),
                   _vm._v(" "),
-                  _vm._m(2),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-row" }, [
                   _c("div", { staticClass: "form-group col-6" }, [
                     _c("label", { attrs: { for: "estado" } }, [
                       _vm._v("Estado"),
@@ -78137,11 +78217,13 @@ var render = function () {
                       },
                     }),
                   ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-6" }, [
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "form-group col-12" }, [
                     _c("label", { attrs: { for: "datos" } }, [_vm._v("Datos")]),
                     _vm._v(" "),
-                    _c("input", {
+                    _c("textarea", {
                       directives: [
                         {
                           name: "model",
@@ -78151,7 +78233,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "Datos importantes" },
+                      attrs: { placeholder: "Datos importantes" },
                       domProps: { value: _vm.estacion.datos },
                       on: {
                         input: function ($event) {
@@ -78299,7 +78381,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo Estación")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo Sensor")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo Sensores")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Datos")]),
         _vm._v(" "),
@@ -78329,14 +78411,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-6" }, [
-      _c("label", { attrs: { for: "tipo_sensor" } }, [_vm._v("Tipo Sensor")]),
-    ])
   },
 ]
 render._withStripped = true
@@ -79657,7 +79731,7 @@ var render = function () {
             },
           },
         },
-        [_vm._v("\n            Nuevo "), _c("i", { staticClass: "fa fa-file" })]
+        [_vm._v("\n      Nuevo "), _c("i", { staticClass: "fa fa-file" })]
       ),
     ]),
     _vm._v(" "),
@@ -79674,6 +79748,8 @@ var render = function () {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(sensor.descripcion))]),
             _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(sensor.estacion.nombre_estacion))]),
+            _vm._v(" "),
             _c("td", [
               _c(
                 "button",
@@ -79686,7 +79762,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Editar")]
+                [_vm._v("\n            Editar\n          ")]
               ),
               _vm._v(" "),
               _c(
@@ -79700,7 +79776,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Eliminar")]
+                [_vm._v("\n            Eliminar\n          ")]
               ),
             ]),
           ])
@@ -79778,7 +79854,7 @@ var render = function () {
                   [_vm._v("Descripción:")]
                 ),
                 _vm._v(" "),
-                _c("input", {
+                _c("textarea", {
                   directives: [
                     {
                       name: "model",
@@ -79788,7 +79864,6 @@ var render = function () {
                     },
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text" },
                   domProps: { value: _vm.sensor.descripcion },
                   on: {
                     input: function ($event) {
@@ -79800,6 +79875,71 @@ var render = function () {
                   },
                 }),
               ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-form-label",
+                    attrs: { for: "estacion_id" },
+                  },
+                  [_vm._v("Estación:")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.sensor.estacion_id,
+                        expression: "sensor.estacion_id",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.sensor,
+                          "estacion_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                    },
+                  },
+                  [
+                    _c("option", { attrs: { value: "", disabled: "" } }, [
+                      _vm._v("--Elegir estación--"),
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.estacions, function (estacion) {
+                      return _c(
+                        "option",
+                        { key: estacion.id, domProps: { value: estacion.id } },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(estacion.nombre_estacion) +
+                              "\n              "
+                          ),
+                        ]
+                      )
+                    }),
+                  ],
+                  2
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
@@ -79809,7 +79949,7 @@ var render = function () {
                   staticClass: "btn btn-secondary",
                   attrs: { type: "button", "data-dismiss": "modal" },
                 },
-                [_vm._v("Cancelar")]
+                [_vm._v("\n            Cancelar\n          ")]
               ),
               _vm._v(" "),
               _vm.esEdit
@@ -79823,7 +79963,7 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("Registrar")]
+                    [_vm._v("\n            Registrar\n          ")]
                   )
                 : _c(
                     "button",
@@ -79835,7 +79975,7 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("Actualizar")]
+                    [_vm._v("\n            Actualizar\n          ")]
                   ),
             ]),
           ]),
@@ -79851,9 +79991,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col col-8" }, [
-        _c("h1", [
-          _vm._v("\n                LISTA DE TIPO DE SENSORES\n            "),
-        ]),
+        _c("h1", [_vm._v("LISTA DE TIPO DE SENSORES")]),
       ]),
     ])
   },
@@ -79865,9 +80003,11 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre ")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripción")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Estación")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Opciones")]),
       ]),
@@ -109316,8 +109456,7 @@ __webpack_require__.r(__webpack_exports__);
         tipo_estacion: data.tipo_estacion,
         datos: data.datos,
         observaciones: data.observaciones,
-        estado: data.estado,
-        sendor_id: data.sendor_id
+        estado: data.estado
       }).then(function (response) {
         dispatch('getEstacions');
       })["catch"](function (error) {
@@ -109496,7 +109635,8 @@ __webpack_require__.r(__webpack_exports__);
       var dispatch = _ref2.dispatch;
       axios.post("api/sensors", {
         nombre: payload.nombre,
-        descripcion: payload.descripcion
+        descripcion: payload.descripcion,
+        estacion_id: payload.estacion_id
       }).then(function (response) {
         dispatch('getSensors');
         console.log(payload);
@@ -109508,7 +109648,8 @@ __webpack_require__.r(__webpack_exports__);
       var dispatch = _ref3.dispatch;
       axios.put("api/sensors/".concat(payload.id), {
         nombre: payload.nombre,
-        descripcion: payload.descripcion
+        descripcion: payload.descripcion,
+        estacion_id: payload.estacion_id
       }).then(function (response) {
         dispatch('getSensors');
       })["catch"](function (error) {

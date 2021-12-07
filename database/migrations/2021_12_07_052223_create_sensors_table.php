@@ -17,6 +17,8 @@ class CreateSensorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->unsignedBigInteger('estacion_id');
+            $table->foreign('estacion_id')->references('id')->on('estacions');
             $table->timestamps();
         });
     }

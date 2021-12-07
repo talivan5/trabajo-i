@@ -37,8 +37,7 @@ export default {
                 tipo_estacion: data.tipo_estacion,
                 datos: data.datos,
                 observaciones: data.observaciones,
-                estado: data.estado,
-                sendor_id: data.sendor_id,
+                estado: data.estado
             }).then( response =>{
                 dispatch('getEstacions');
             }).catch(error =>{

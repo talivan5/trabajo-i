@@ -20,7 +20,8 @@ export default {
         addSensor({ dispatch }, payload ){
             axios.post(`api/sensors`,{
                 nombre: payload.nombre,
-                descripcion: payload.descripcion
+                descripcion: payload.descripcion,
+                estacion_id: payload.estacion_id
             }).then(response => {
                 dispatch('getSensors');
                 console.log(payload);
@@ -31,7 +32,8 @@ export default {
         editSensor({dispatch},payload){
             axios.put(`api/sensors/${payload.id}`,{
                 nombre: payload.nombre,
-                descripcion: payload.descripcion
+                descripcion: payload.descripcion,
+                estacion_id: payload.estacion_id
             }).then(response => {
                 dispatch('getSensors');
             }).catch(error => {

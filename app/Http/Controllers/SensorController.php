@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sensor;
+use App\Estacion;
 
 class SensorController extends Controller
 {
    
     public function index()
     {
-        $sensors=Sensor::orderBy('id', 'DESC')->get();
+        $sensors=Sensor::with('estacion')->orderBy('id', 'DESC')->get();
         $data=[
-            'sensors'=>$sensors
+            'sensors'=>$sensors,
         ];
         return response()->json($data, 200);
     }
@@ -22,6 +23,7 @@ class SensorController extends Controller
         $sensor = new Sensor();
         $sensor->nombre = $request->nombre;
         $sensor->descripcion= $request->descripcion;
+        $sensor->estacion_id= $request->estacion_id;
         $sensor->save();
 
         $data=[
@@ -40,6 +42,7 @@ class SensorController extends Controller
         $sensor = Sensor::findOrfail($id);
         $sensor->nombre = $request->nombre;
         $sensor->descripcion= $request->descripcion;
+        $sensor->estacion_id = $request->estacion_id;
         $sensor->save();
         return response()->json('Se actualizo correctamente', 200);
     }

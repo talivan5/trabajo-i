@@ -11,7 +11,6 @@
       </button>
     </div>
     <div class="table-responsive">
-      
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -25,7 +24,7 @@
             <th scope="col">Longitud</th>
             <th scope="col">Altura</th>
             <th scope="col">Tipo Estación</th>
-            <th scope="col">Tipo Sensor</th>
+            <th scope="col">Tipo Sensores</th>
             <th scope="col">Datos</th>
             <th scope="col">Observaciones</th>
             <th scope="col">Estado</th>
@@ -45,6 +44,11 @@
             <td>{{ estacion.longitud }}</td>
             <td>{{ estacion.altura }}</td>
             <td>{{ estacion.tipo_estacion }}</td>
+            <td>
+              <span class="badge badge-primary" v-for="sensor in estacion.sensors" :key="sensor">
+                {{ sensor.nombre }}
+              </span>
+            </td>
             <td>{{ estacion.datos }}</td>
             <td>{{ estacion.observaciones }}</td>
             <td>{{ estacion.estado }}</td>
@@ -178,12 +182,6 @@
                   />
                 </div>
                 <div class="form-group col-6">
-                  <label for="tipo_sensor">Tipo Sensor</label>
-                  
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-6">
                   <label for="estado">Estado</label>
                   <input
                     type="text"
@@ -192,14 +190,33 @@
                     placeholder="Estado que se encuentra"
                   />
                 </div>
-                <div class="form-group col-6">
+                <!-- <div class="form-group col-6">
+                  <label for="tipo_estacion">Tipo Estacion</label>
+                  <a
+                    class="btn btn-primary"
+                    data-toggle="collapse"
+                    href="#collapseExample"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    Mostrar
+                  </a>
+                  <div class="collapse" id="collapseExample">
+                    <ul class="list-group">
+                      <li class="list-group-item">{{estacion.sensors}}</li>
+                    </ul>
+                  </div>
+                </div> -->
+              </div>
+              <div class="form-row">
+                <div class="form-group col-12">
                   <label for="datos">Datos</label>
-                  <input
-                    type="text"
+                  <textarea
                     v-model="estacion.datos"
                     class="form-control"
                     placeholder="Datos importantes"
-                  />
+                  ></textarea>
                 </div>
               </div>
               <div class="form-row">
@@ -295,12 +312,11 @@ export default {
         observaciones: "",
         estado: "",
         imagen: "",
-        sensor_id:""
       },
       lat: "",
       lng: "",
       showMap: true,
-      title: "Registrar Estación",
+      title: "",
       esEdit: false,
       imagenMineatura: "",
       mapOptions: {
@@ -319,9 +335,6 @@ export default {
     estacions() {
       return this.$store.state.modulo_estacions.estacions;
     },
-    sensors() {
-      return this.$store.state.modulo_sensors.sensors;
-    },
     imagen() {
       return this.imagenMineatura;
     },
@@ -329,9 +342,6 @@ export default {
   methods: {
     listaEstacions() {
       this.$store.dispatch("getEstacions");
-    },
-    listaSensors() {
-      this.$store.dispatch("getSensors");
     },
     obtenerImagen(e) {
       let file = e.target.files[0];
@@ -364,10 +374,10 @@ export default {
           observaciones: estacion.observaciones,
           estado: estacion.estado,
           imagen: estacion.imagen,
-          sensor_id: estacion.sensor_id
         };
       } else {
         this.esEdit = true;
+        this.title = "Registrar un Tipo Sensor";
         this.estacion = {
           id: "",
           nombre_estacion: "",
@@ -383,7 +393,6 @@ export default {
           observaciones: "",
           estado: "",
           imagen: "",
-          sensor_id: ""
         };
       }
       $("#nuevo").modal({ backdrop: "static", keyboard: false, show: true });
@@ -403,25 +412,7 @@ export default {
       formData.append("observaciones", estacion.observaciones);
       formData.append("estado", estacion.estado);
       formData.append("imagen", estacion.imagen);
-      formData.append("sensor_id", estacion.sensor_id);
       this.$store.dispatch("addEstacion", formData);
-      this.estacion = {
-        id: "",
-        nombre_estacion: "",
-        provincia_localidad: "",
-        municipio: "",
-        fecha_inicio: "",
-        fecha_fin: "",
-        latitud: "",
-        longitud: "",
-        altura: "",
-        tipo_estacion: "",
-        datos: "",
-        observaciones: "",
-        estado: "",
-        imagen: "",
-        sensor_id:""
-      };
       $("#nuevo").modal("hide");
     },
     editarEstacion(estacion) {
@@ -440,10 +431,9 @@ export default {
         observaciones: estacion.observaciones,
         estado: estacion.estado,
         imagen: estacion.imagen,
-        sensor_id: estacion.sensor_id
       };
-      this.$store.dispatch("editEstacion", payload);
       $("#nuevo").modal("hide");
+      this.$store.dispatch("editEstacion", payload);
     },
     eliminarEstacion(id) {
       this.$store.dispatch("deleteEstacion", id);
@@ -476,7 +466,6 @@ export default {
   },
   mounted() {
     this.listaEstacions();
-    this.listaSensors();
   },
 };
 </script>

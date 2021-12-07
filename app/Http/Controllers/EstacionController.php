@@ -11,7 +11,7 @@ class EstacionController extends Controller
 {
     public function index()
     {
-       $estacions = Estacion::orderBy('id', 'DESC')->get();
+       $estacions = Estacion::with('sensors')->orderBy('id', 'DESC')->get();
        $data = [
             'estacions' => $estacions,
        ];
@@ -50,7 +50,6 @@ class EstacionController extends Controller
       $estacion->datos = $request->datos;
       $estacion->observaciones = $request->observaciones;
       $estacion->estado = $request->estado;
-      $estacion->sensor_id = $request->sensor_id;
       if($estacion->imagen){
          try {
             $destination_path='public/img/estaciones';
@@ -87,7 +86,6 @@ class EstacionController extends Controller
         $estacion->datos = $request->datos;
         $estacion->observaciones = $request->observaciones;
         $estacion->estado = $request->estado;
-        $estacion->sensor_id = $request->sensor_id;
         $estacion->save();
 
         $data =[

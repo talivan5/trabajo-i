@@ -8,7 +8,8 @@ class Sensor extends Model
 {
     protected $fillable = [
         'nombre',
-        'descripcion'
+        'descripcion',
+        'estacion_id'
     ];
 
     public function estacion()

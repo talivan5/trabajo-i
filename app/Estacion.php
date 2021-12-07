@@ -25,8 +25,7 @@ class Estacion extends Model
         
         'datos',
         'observaciones',
-        'estado',
-        'sensor_id'   
+        'estado'
     ];
 
     public function sensors()

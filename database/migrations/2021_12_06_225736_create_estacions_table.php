@@ -28,8 +28,6 @@ class CreateEstacionsTable extends Migration
             $table->string('datos');
             $table->string('observaciones');
             $table->string('estado');
-            $table->unsignedBigInteger('sensor_id');
-            $table->foreign('sensor_id')->references('id')->on('sensors');
             $table->timestamps();
         });
     }
